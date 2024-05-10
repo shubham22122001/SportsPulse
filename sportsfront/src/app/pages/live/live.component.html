@@ -1,0 +1,30 @@
+@if (loading) {
+    <h1 class=" p-4  text-2xl text-center">Loading...</h1>
+    }
+@if (!loading) {
+    <div class="flex py-3 px-10 justify-between">
+        <h1 class="text-gray-200 font-extrabold text-4xl ">
+         
+              <ngx-typed-js [typeSpeed]="50" [loop]="true" [strings]="['Score', 'Commentry','Matches']  ">
+                  Live <span class="typing"></span>
+                  </ngx-typed-js>
+           
+        </h1>
+        <button (click)="refreshScore()" class="px-3 py-2 bg-blue-500 hover:bg-blue-700 rounded-full text-white">Refresh</button>
+  </div>
+  <div>
+
+    <!-- <h1 class="text-3xl font-extrabold mx-4 text-gray-200">LIVE CRICKET SCORE</h1> -->
+    <div class="flex flex-wrap items-stretch">
+        @for (match of liveMatches; track $index) {
+            <div class=" w-full md:w-[33%] p-3">
+                <app-match-card [match]="match"></app-match-card>
+            </div>
+        }
+        @empty {
+            There is No Live Matches available...
+        }
+    </div>
+</div> 
+}
+ 

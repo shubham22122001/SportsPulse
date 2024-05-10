@@ -1,0 +1,26 @@
+<div class="bg-gray-100 min-h-screen">
+  <header class="bg-gray-900 py-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <!-- Brand Logo -->
+      <a routerLink="/live" class="text-white text-3xl font-semibold ml-4">SportsPulse</a>
+
+      <!-- Navigation Menu -->
+      <nav>
+        <ul class="flex space-x-6 text-white">
+          <!-- <li><a [routerLink]="['/']" class="hover:text-gray-300">Home</a></li> -->
+          <li><a [routerLink]="'/live'" class="hover:text-gray-300">Live Matches</a></li>
+          <li><a [routerLink]="'/point-table'" class="hover:text-gray-300">Points Table</a></li>
+          <li><a [routerLink]="'/history'" class="hover:text-gray-300">Match History</a></li>
+        </ul>
+      </nav>
+
+      <!-- Empty Div (if needed) -->
+      <div></div>
+    </div>
+  </header>
+
+  <div class="container mx-auto px-28 py-8">
+    <!-- '<router-outlet></router-outlet>' acts as a placeholder in the HTML template where Angular router dynamically loads different components based on the current URL route. -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

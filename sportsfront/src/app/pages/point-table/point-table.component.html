@@ -1,0 +1,32 @@
+<div>
+    @if (pointTable) {
+  
+      <h1 class="px-3 py-2 text-4xl font-extrabold text-gray-200">TATA IPL24 Point Table</h1>
+  
+      <table class="mt-2 shadow rounded text-gray-200 min-w-full rgb(3, 12, 30) border border-gray-300 align-middle">
+        <thead>
+          <tr>
+            @for (heading of tableheading; track $index) {
+              <th class="py-2 px-4 border-b">{{heading}}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (team of pointTable; track $index) {
+            <tr [ngClass]="{
+              'bg-green-400 text-gray-100': $index < 4,
+              'bg-red-400 text-gray-50': $index >= 4
+            }" class="cursor-pointer hover:bg-blue-500 hover:text-white transition-all">
+              @for (item of team; track $index) {
+                <td [ngClass]="{
+                  'font-bold': $index == 0
+                }" class="py-2 px-4 border-b">{{item}}</td>
+              }
+            </tr>
+          }
+          <!-- Add more rows as needed -->
+        </tbody>
+      </table>
+    }
+  </div>
+  

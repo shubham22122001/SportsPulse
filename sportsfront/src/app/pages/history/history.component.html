@@ -1,0 +1,14 @@
+<div class=" ">
+
+    <h1 class="text-3xl font-extrabold mx-4 text-gray-200">MATCH HISTORY</h1>
+    <div class="flex flex-wrap items-stretch">
+        @for (match of allMatch; track $index) {
+            <div class=" w-full md:w-[33%] p-3">
+                <app-match-card [match]="match"></app-match-card>
+            </div>
+        }
+        @empty {
+            There is No Live Matches available...
+        }
+    </div>
+</div>  

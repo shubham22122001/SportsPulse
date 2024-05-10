@@ -1,0 +1,149 @@
+Frontend
+	Angular 17
+		routing
+		standalone components
+		api calling
+	Steps:
+	Angular
+		Requirement
+			->Node.js
+			->npm		
+			->angular cli (npm install -g @angular/cli)
+				->angular projects can be created.
+		Creating Angular project	
+			-> sportsfront
+			-> understand
+				angular components
+				angular services
+				angular api call -> HttpClient	
+				documentation usage
+			Servcer side rendering
+				-> performance enhance
+				->enables better Search engine optimization
+			Application serve when application works
+			->Component -> to make this 'ng g c componentName' use this code in app/pages directory (make pages dir first as this contain main compo)
+
+				->HTML file->template[naming convention:'app.component.html']
+				->TS file->main component logic is here(imp)[app.component.ts]
+				->CSS file-> component's css file[app.component.css]
+				->spec file->file for testing [app.component.spec]
+
+			->Routes(app.routes.ts)(used in app.config.ts)
+				->eg:
+					export const routes: Routes = [
+    							{
+        							path:"home",
+        							component:HomeComponent
+    							}]
+
+			-> For API calls mkdir services
+				-> ng g s api-call-> app-call.services.ts
+							->HttpClient is used here 'constructor(private _httpClient:HttpClient)'
+							-> environment is made from where backend(spring) is connected http://localhost:8080 (ng g environment) environment.development.ts is used for development and environment.ts is used for production
+							->for eg:
+							export class ApiCallService {
+
+  								constructor(private _httpClient:HttpClient) { }
+  								getAllMatches(){
+    									return this._httpClient.get(`${environment.apiUrl}/match`)
+  								}}
+
+In Angular, `server.ts` typically serves as the entry point for server-side rendering (SSR) configurations when using Angular Universal. Here's a brief explanation of its purpose:
+
+1. **Server-side Rendering (SSR)**: Angular Universal allows you to render Angular applications on the server side, which improves performance, enables better SEO, and provides a more consistent user experience across different devices and browsers.
+
+2. **Entry Point**: `server.ts` acts as the entry point for configuring and starting the server-side rendering process. It contains the necessary setup to bootstrap the Angular application on the server.
+
+3. **Configuration**: Inside `server.ts`, you'll find configurations related to setting up Express or other server frameworks, initializing the Angular application, handling HTTP requests, and rendering Angular components on the server.
+
+4. **Integration with Angular Application**: `server.ts` integrates the server-side rendering functionality with your Angular application. It typically imports the Angular app module and uses Angular Universal APIs to render the application's components on the server.
+
+5. **Deployment**: When deploying your Angular application with server-side rendering enabled, `server.ts` is an essential file that needs to be included in the deployment bundle. It ensures that your application can be rendered on the server before being served to the client's browser.
+
+Overall, `server.ts` plays a crucial role in enabling server-side rendering for Angular applications, improving performance, SEO, and user experience.
+
+---------------------------------------------------------------
+This Angular `AppComponent` class represents the root component of your Angular application. Let's break down the provided code:
+
+1. **Imports**:
+   - `Component`: Imported from `@angular/core`, it's a decorator function used to define Angular components.
+   - `CommonModule`: Imported from `@angular/common`, it provides common directives and pipes such as `ngIf` and `ngFor`.
+   - `RouterOutlet`: Imported from `@angular/router`, it's a directive used in routing to mark the location where the router should display the components for the activated route.
+
+2. **Component Decorator**:
+   - `@Component`: This decorator is used to define metadata for the component.
+     - `selector`: Specifies the CSS selector that identifies this component in a template. Here, the selector is `app-root`, meaning this component will be used as `<app-root></app-root>` in HTML.
+     - `standalone`: This is not a valid property for `@Component` decorator. It seems to be intended for a custom property, but Angular does not recognize it as a valid property.
+     - `imports`: Specifies the Angular modules that this component depends on. However, `imports` should be specified in the NgModule, not in the component metadata.
+     - `templateUrl`: Specifies the URL of the HTML template file associated with this component.
+     - `styleUrls`: Specifies an array of URLs for CSS style files associated with this component.
+
+3. **Class Declaration**:
+   - `AppComponent`: This is the class declaration for the component.
+     - It has a property `title` initialized to `'sportsfront'`.
+     - This property could be used in the component's template or logic.
+     - It doesn't have any methods or additional logic in the provided code snippet.
+
+Overall, this code defines an Angular component named `AppComponent` with metadata specifying its selector, template URL, style URLs, and imports. However, the usage of `standalone` property in `@Component` decorator and importing `RouterOutlet` directly in `imports` array are incorrect and should be corrected to avoid errors.
+
+===========================================================================================
+Backend
+	Spring boot
+	Database accessing
+	services
+	repositories
+	scrapping
+
+
+Web Scrapping logic getLiveMatches
+This Java method `getLiveMatches()` retrieves live cricket match information from the website "https://www.cricbuzz.com/cricket-match/live-scores". 
+1. **URL Retrieval**: It starts by defining the URL of the webpage containing live cricket match information.
+
+2. **HTML Parsing**: It then uses the Jsoup library to connect to the URL and retrieve the HTML content of the webpage.
+
+3. **Extracting Match Elements**: It selects specific HTML elements that contain information about each live cricket match. These elements typically include details such as team names, scores, venue, etc.
+
+4. **Iterating Through Matches**: For each match element found in the webpage, the method creates a new `Match` object to store the match information.
+
+5. **Extracting Match Information**: It extracts various pieces of information from the HTML elements such as team names, scores, and match status.
+
+6. **Setting Match Object Properties**: It sets the properties of the `Match` object with the extracted information.
+
+7. **Adding Match to List**: Once all the information for a match is extracted and set, it adds the `Match` object to a list of matches.
+
+8. **Error Handling**: If there's an error during the process, such as failure to connect to the webpage or parse its content, it prints the stack trace for debugging purposes.
+
+9. **Return**: Finally, it returns the list of `Match` objects containing information about live cricket matches.
+
+This method is primarily used to fetch live cricket match data from the specified website, which can then be further processed or displayed in an application.
+
+getPointsTable logic
+This code snippet fetches the points table data for the Indian Premier League 2024 from the website "https://www.cricbuzz.com/cricket-series/7607/indian-premier-league-2024/points-table" and parses it using Jsoup, a Java library for working with HTML. 
+1. **Initialization**:
+   - It initializes an empty list `pointTable` to store the points table data.
+   - It defines the URL of the webpage containing the points table.
+
+2. **Fetching and Parsing HTML**:
+   - It uses Jsoup to connect to the URL and retrieve the HTML content of the webpage.
+   - It selects the HTML table with the class `cb-srs-pnts` which contains the points table data.
+
+3. **Parsing Table Headers**:
+   - It selects the header cells (`<th>` elements) within the `<thead>` section of the table.
+   - It iterates over each header cell, extracts its text, and adds it to the `headers` list.
+
+4. **Adding Headers to Point Table**:
+   - It adds the list of header names (`headers`) to the `pointTable` list.
+
+5. **Parsing Table Body**:
+   - It selects the rows (`<tr>` elements) within the `<tbody>` section of the table.
+   - For each row, it checks if it has a class attribute.
+   - If a row has a class attribute (indicating it contains data), it extracts the team name and points information from the row.
+   - It adds the team name and points information to a list (`points`) and then adds this list to the `pointTable` list.
+
+6. **Result**:
+   - After executing this code, the `pointTable` list will contain the points table data.
+   - Each element in `pointTable` will be a list representing a row of the points table.
+   - The first element will be the list of header names, and subsequent elements will be lists containing team names and their corresponding points.
+
+In summary, this code retrieves the points table from a webpage, parses it using Jsoup, and stores the data in a list of lists for further processing or display.
+
